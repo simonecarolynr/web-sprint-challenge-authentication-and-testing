@@ -3,7 +3,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const session = require("express-session")
 const KnexSessionStore = require("connect-session-knex")(session)
-const authenticate = require('../auth/authenticate-middleware.js');
+const restrict = require('../auth/authenticate-middleware.js');
 const authRouter = require('../auth/auth-router.js');
 const jokesRouter = require('../jokes/jokes-router.js');
 const db = require("../database/dbConfig")
@@ -23,6 +23,6 @@ server.use(session({
 }))
 
 server.use('/api/auth', authRouter);
-server.use('/api/jokes', authenticate, jokesRouter);
+server.use('/api/jokes', restrict(), jokesRouter);
 
 module.exports = server;
