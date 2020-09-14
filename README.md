@@ -27,10 +27,12 @@ Be prepared to demonstrate your understanding of this week's concepts by answeri
 1. Differences between using _sessions_ or _JSON Web Tokens_ for authentication.
 
 2. What does `bcrypt` do to help us store passwords in a secure manner.
+ Bcrypt.js helps by hashing the password so that it cannot be easily guessed by hackers
 
 3. How are unit tests different from integration and end-to-end testing.
 
 4. How _Test Driven Development_ changes the way we write applications and tests.
+ In TDD, you write the tests before the endpoints. This process helps to clarify the guidelines of the route.
 
 You are expected to be able to answer questions in these areas. Your responses contribute to your Sprint Challenge grade.
 
@@ -38,8 +40,8 @@ You are expected to be able to answer questions in these areas. Your responses c
 
 ### Task 1: Project Set Up
 
-- [ ] Create a forked copy of this project
-- [ ] Add your team lead as collaborator on Github
+- [x] Create a forked copy of this project
+- [x] Add your team lead as collaborator on Github
 - [ ] Clone your OWN version of the repository (Not Lambda's by mistake!)
 - [ ] Create a new branch: git checkout -b `<firstName-lastName>`.
 - [ ] Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly
