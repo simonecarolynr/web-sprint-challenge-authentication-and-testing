@@ -25,12 +25,14 @@ Commit your code regularly and meaningfully. This helps both you (in case you ev
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
 
 1. Differences between using _sessions_ or _JSON Web Tokens_ for authentication.
+ Sessions are only stored on local storage for authorization, while JWT persists throughout your requests
 
 2. What does `bcrypt` do to help us store passwords in a secure manner.
  Bcrypt.js helps by hashing the password so that it cannot be easily guessed by hackers
 
 3. How are unit tests different from integration and end-to-end testing.
-
+ Unit tests tests each function, while integration and end-to-end testing tests the overall functionality of an app. Kind of like checking every individual gear versus the whole engine.
+ 
 4. How _Test Driven Development_ changes the way we write applications and tests.
  In TDD, you write the tests before the endpoints. This process helps to clarify the guidelines of the route.
 
