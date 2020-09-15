@@ -1,14 +1,13 @@
 const supertest = require("supertest")
 const server = require("../api/server")
 const db = require("../database/dbConfig")
-const { expectCt } = require("helmet")
 
 describe("Dad jokes tests", () => {
 //test GET /
-it("GET /, if the user is authenticated it will return an array", async () => {
-
-
-})
+it("returns a JSON object", async () => {
+    const res = await supertest(server).get("/api/jokes");
+    expect(res.type).toBe("application/json");
+  });
 
 
 //test GET /

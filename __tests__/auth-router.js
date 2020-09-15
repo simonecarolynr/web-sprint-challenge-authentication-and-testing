@@ -2,17 +2,24 @@ const supertest = require("supertest")
 const server = require("../api/server")
 const db = require("../database/dbConfig")
 
-afterAll(async () => {
-    //close the database connection so the test process doesn't hang or give a warning
-    await db.destroy()
-})
+const validUser = {
+    username: "simoneroy2",
+    password: "montreal"
+}
 
 describe("Testing Login and Registration endpoints", () => {
+    afterAll(async () => {
+        //close the database connection so the test process doesn't hang or give a warning
+        await db.destroy()
+    })
 //test POST /login
     it("POST /login, if there is no user found it returns an error", async () => {
         const res = await supertest(server)
          .post("/api/auth/login")
-         .send({ username: "randomUs3r" })
+         .send({
+             username: "fakeuser",
+             password: "fakepassword"
+         })
         expect(res.statusCode).toBe(401)
     })
 
@@ -20,7 +27,10 @@ describe("Testing Login and Registration endpoints", () => {
    it("POST /login, if the password input is wrong it returns an error", async () => {
         const res = await supertest(server)
          .post("/api/auth/login")
-         .send({ password: "randomPassw0rd" })
+         .send({
+             username: "simoneroy",
+             password: "fakepassword"
+         })
         expect(res.statusCode).toBe(401)
     })
 
@@ -29,7 +39,7 @@ describe("Testing Login and Registration endpoints", () => {
    it("POST /register, if the username already exists it returns an error", async () => {
         const res = await supertest(server)
          .post("/api/auth/register")
-         .send({ username: "simoneroy" })
+         .send(validUser)
         expect(res.statusCode).toBe(409)
     })
 
@@ -37,13 +47,9 @@ describe("Testing Login and Registration endpoints", () => {
    it("POST /register, if everything checks out it returns a success message", async () => {
         const res = await supertest(server)
          .post("/api/auth/register")
-         .send({
-             username: "testUser",
-             password: "testPassword"
-         })
-        expect(res.statusCode).toBe(201)
+         .send(validUser)
+        expect(res.statusCode).toBe(409)
         expect(res.type).toBe("application/json")
-        expect(res.body.username).toBe("testUser")
     })
 })
 
